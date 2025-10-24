@@ -1,5 +1,5 @@
 print("Welcome to the Grade Registry Program") # Greets user to program and informs user what the program is
-list = dict()
+gradelist = dict() 
 while(True) : # runs until user wishes to exit the program
     userInput = input("Would you like to add a new student? y(yes),n(no)\n").lower()
     if userInput.startswith('y') : 
@@ -20,14 +20,14 @@ while(True) : # runs until user wishes to exit the program
             GPA/=count
             txt = "{:.2f}"
             GPA = txt.format(GPA)
-            list[name] = GPA # add Student and GPA to list
+            gradelist[name] = GPA # add Student and GPA to list
         else :
             # add Student and GPA to list with GPA equal to zero
-            list[name] = GPA
+            gradelist[name] = GPA
     elif userInput.startswith('n') : # user wishes to exit program
         break
     else : # user has entered something outside of given parameters
         print("Incorrect Input, please enter y(yes)/n(no)")
 print("This is the list of students in the system, and their corresponding accumulative GPA")
-for name in list :
-    print(name, list.get(name))
+for name in gradelist :
+    print(name, gradelist.get(name)) 
