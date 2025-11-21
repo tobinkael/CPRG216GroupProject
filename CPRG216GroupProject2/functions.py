@@ -7,6 +7,27 @@ def main_menu():
     option = input()
     return option
 
-def add_student():
+def add():
+    pass
+
+def remove():
+    pass
+
+def edit_name():
+    pass
+
+def search():
+    pass
+
+def run_search():
+    pass
+
+def run_edit():
+    pass
+
+def run_add():
+    pass
+
+def run_remove():
     pass
 
