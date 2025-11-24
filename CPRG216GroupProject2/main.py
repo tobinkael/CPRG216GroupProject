@@ -1,9 +1,15 @@
+from functions import *
 
-from CPRG216GroupProject2.functions import main_menu, add_student
-
-option = main_menu
-
-if(option == "1"):
-    add_student()
-elif option=="2":
-    pass
+print("Welcome to the students record program")
+while True:
+    show_menu()
+    if(option == 1):
+        print("Reached 1")
+    elif(option == 2):
+        print("Reached 2")
+    elif(option == 3):
+        print("Reached 3")
+    elif(option == 4):
+        print("Reached 4")
+    else:
+        print("That is not a valid input. Please input a proper input.")
