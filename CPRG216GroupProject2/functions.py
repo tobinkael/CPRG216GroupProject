@@ -7,27 +7,28 @@ def show_menu():
     option = input()
     return option
 
-def add():
+def add(students, id, name, gpa, semester):
+    print("id:")
+
+def remove(students, id):
     pass
 
-def remove():
+def edit_name(students, id, new_name):
     pass
 
-def edit_name():
+def search(students, id):
     pass
 
-def search():
+def run_search(students):
     pass
 
-def run_search():
+def run_edit(students):
     pass
 
-def run_edit():
-    pass
+def run_add(students):
+    print("Enter id of the student, followed by the student's information.")
+    add()
 
-def run_add():
-    pass
-
-def run_remove():
+def run_remove(students):
     pass
 
