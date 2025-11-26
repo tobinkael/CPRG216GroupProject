@@ -1,5 +1,5 @@
 from functions import *
-
+list = dict()
 print("Welcome to the students record program")
 while True:
     match show_menu():
