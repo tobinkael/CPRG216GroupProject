@@ -8,8 +8,11 @@ def show_menu():
     return option
 
 def add(students, id, name, gpa, semester):
-    
-    students[id] = [name, gpa, semester]
+    students[id] = [id, name, gpa, semester]
+    print("Student added")
+    values = students[id]
+    for i in range(4):
+        print(values[i], end=" ")
 
 def remove(students, id):
     pass
@@ -18,13 +21,18 @@ def edit_name(students, id, new_name):
     pass
 
 def search(students, id):
-    for i in range (len(students)):
-        students.get(i, id)
-
+    if id in students:
+        print("Student found.")
+        values = students[id]
+        for i in range(3):
+            print(values[i], end=" ")
+    else:
+        print("Student not found.",end="")
+        
 def run_search(students):
     option = True
     while option:
-        id = int(input("Enter the id of the student. Enter -1 to return to the previous menu\n"))
+        id = int(input("\nEnter the id of the student. Enter -1 to return to the previous menu\n"))
         if(id == -1) :
             break
         else :
@@ -42,10 +50,9 @@ def run_add(students):
         g = float(input("gpa:"))
         s = int(input("semester:"))
         add(students, i, n, g, s)
-        print("Student added")
 
         while(True) :
-            userCont = input("Do you want to add another new student? y(yes)/n(no)\n")
+            userCont = input("\nDo you want to add another new student? y(yes)/n(no)\n")
             if userCont.startswith('y') :
                 break
             elif userCont.startswith('n') :
