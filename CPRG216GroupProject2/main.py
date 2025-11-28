@@ -6,16 +6,13 @@ running = True
 while running:
     match show_menu():
         case("1"):
-            print("Reached 1")
             run_search(list)
         case("2"):
-            print("Reached 2")
-            # run_edit(list)
+            run_edit(list)
         case("3"):
             run_add(list)
         case("4"):
-            print("Reached 4")
-            # run_remove(list)
+            run_remove(list)
         case(_):
             print("That is not a valid input. Please input a proper input.")
     while(True) :
