@@ -1,13 +1,14 @@
 from functions import *
+from student import *
 print("Welcome to the students record program") # welcome message
 
-list = {} # intialize list
+new_student = Student(0, "q", "q", 0, 0)
 running = True
 # loops until user wishes to exit
 while running:
     match show_menu():
         case("1"):
-            run_add(list)
+            run_add(new_student)
         case("2"):
             run_search(list)
         case("3"):

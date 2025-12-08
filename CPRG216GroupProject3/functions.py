@@ -1,3 +1,5 @@
+from student import *
+
 def show_menu():
     '''
     Prints a menu of options for the user to select
@@ -13,20 +15,35 @@ def show_menu():
     option = input() # variable in order to store the users answer
     return option
 
-def add(students, id, first_name, last_name, gpa, semester):
+def add(student):
     '''
-    Takes in a list, an int, a string, a float, and an int
+    Takes in an object records data to data.txt
     '''
-
-    students[id] = [id, first_name, last_name, gpa, semester]
+    student_exists = False
+    f_obj = open("data.txt", "r")
+    line = f_obj.read()
+    while line != "":
+        line = line.rstrip()
+        if(line == student):
+            print("Incorrect Id. Id already exist in the system.")
+            student_exists = True
+            break
+        line = f_obj.read()
+    f_obj.close()
+    if student_exists == False :
+        f_obj = open("data.txt", "a")
+        line = line.rstrip()
+        f_obj.write(line)
+        f_obj.close()
+    
     print("Student Enrolled in the system")
-    values = students[id]
+    # values = students[id]
     
     # prints all the values associated with the key. 
     # This is done to bypass the brackets that come with 
     # printing a dictionary
-    for i in range(4):
-        print(values[i], end=" ")
+    # for i in range(4):
+    #     print(values[i], end=" ")
 
 def remove(students, id):
     '''
@@ -96,9 +113,9 @@ def run_search(students):
         if(id == -1) :
             break
         elif(id == 1) :
-            search_id(students, id)
+            break
         else :
-            search_name(students, first_name, last_name)
+            search(students, id)
 
 def run_edit(students):
     '''
@@ -121,9 +138,9 @@ def run_edit(students):
             else:
                 print("Student not found.",end="")
 
-def run_add(students):
+def run_add(student):
     '''
-    Takes in a list. Asks the user for different variables 
+    Takes in an object. Asks the user for different variables 
     and then passes it on to another function
     '''
     option = True
@@ -135,7 +152,8 @@ def run_add(students):
         ln = str(input("Last name:"))
         g = float(input("GPA:"))
         s = int(input("Semester:"))
-        add(students, i, fn, ln, g, s) # function call
+        new_student = Student(i, fn, ln, g, s)
+        add(new_student) # function call
 
         # asks user if they want to add another item to the list
         while(True) :
