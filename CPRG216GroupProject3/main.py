@@ -2,7 +2,7 @@ from functions import *
 from student import *
 print("Welcome to the students record program") # welcome message
 
-new_student = Student(0, "q", "q", 0, 0)
+new_student = Student(0, "t", "t", 0, 0)
 running = True
 # loops until user wishes to exit
 while running:
@@ -10,15 +10,15 @@ while running:
         case("1"):
             run_add(new_student)
         case("2"):
-            run_search(list)
+            run_search(new_student)
         case("3"):
-            run_edit(list)
+            run_edit(new_student)
         case("4"):
-            run_remove(list)
-        # case("5"):
-        #     run_print_list(list)
-        # case("6"):
-        #     run_save(list)
+            run_remove(new_student)
+        case("5"):
+            run_print_list(new_student)
+        case("6"):
+            run_save(new_student)
         case(_):
             print("That is not a valid input. Please input a proper input.")
     # asks if user wants to continue using the program

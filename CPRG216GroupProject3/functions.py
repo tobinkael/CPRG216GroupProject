@@ -20,22 +20,33 @@ def add(student):
     Takes in an object records data to data.txt
     '''
     student_exists = False
+
     f_obj = open("data.txt", "r")
-    line = f_obj.read()
+    line = f_obj.readline()
+
+    # new student to enter
+    nlist = student.__str__()
+    nparsed = nlist.split()
+
+    # searches to see if id is being used in the program
     while line != "":
         line = line.rstrip()
-        if(line == student):
+        lparsed = line.split()
+
+        # if the id is being used in the 'database', it will break the loop and print an error message
+        if(lparsed[0] == nparsed[0]):
             print("Incorrect Id. Id already exist in the system.")
             student_exists = True
             break
-        line = f_obj.read()
+        line = f_obj.readline()
     f_obj.close()
+    # if the id is free, write to the file
     if student_exists == False :
         f_obj = open("data.txt", "a")
-        line = line.rstrip()
-        f_obj.write(line)
+        
+        f_obj.write(student.__str__())
         f_obj.close()
-    
+    # informs user of decision
     print("Student Enrolled in the system")
     # values = students[id]
     
@@ -82,28 +93,68 @@ def edit_name(students, id, new_name):
 
 def search(students, id):
     '''
-    Takes in a list and a key. Searches for the
-    key-value pair.
+    Takes in an object and an int. Searches the 'database' for a match
     '''
+    student_exists = False
+    
+    f_obj = open("data.txt", "r")
+    line = f_obj.readline()
 
-    # Checks to see if the entered key 
-    # exists within the list
-    if id in students:
-        print("Student found.")
-        values = students[id]
+    # searches to see if id is being used in the program
+    if(id == 2):
+        fn = input("Please Enter the first name of the student:\n")
+        ln = input("Please Enter the last name of the student:\n")
 
-        # This is only range 3 as the testing expected output 
-        # doesn't display the semester. Unclear if that is a mistake 
-        # or if that is intentional
-        for i in range(3): 
-            print(values[i], end=" ") # prints the indiviual values to bypass the brackets that come with prints a dictionary on its own
-    # Error message for the user
+        while line != "":
+            line = line.rstrip()
+            lparsed = line.split()
+
+            # if the name is being used in the 'database', it will break the loop and print a message to the user
+            if((lparsed[1] == fn) and (lparsed[2] == ln)):
+                student_exists = True
+                break
+            line = f_obj.readline()
     else:
-        print("Student not found.",end="")
+        i = input("Please Enter the id of the student:\n")
+        while line != "":
+            line = line.rstrip()
+            lparsed = line.split()
+
+            # if the id is being used in the 'database', it will break the loop and print a message to the user
+            if(lparsed[0] == i):
+                student_exists = True
+                break
+            line = f_obj.readline()
+    if(student_exists == True):
+        print("Student found")
+    else:
+        print("Student not found")
+
+
+
+
+
+
+
+
+    # # Checks to see if the entered key 
+    # # exists within the list
+    # if id in students:
+    #     print("Student found.")
+    #     values = students[id]
+
+    #     # This is only range 3 as the testing expected output 
+    #     # doesn't display the semester. Unclear if that is a mistake 
+    #     # or if that is intentional
+    #     for i in range(3): 
+    #         print(values[i], end=" ") # prints the indiviual values to bypass the brackets that come with prints a dictionary on its own
+    # # Error message for the user
+    # else:
+    #     print("Student not found.",end="")
 
 def run_search(students):
     '''
-    Takes in a list. Provides the user a chance to 
+    Takes Student object. Provides the user a chance to 
     change their mind if they selected the wrong option.
     '''
     option = True 
@@ -113,7 +164,7 @@ def run_search(students):
         if(id == -1) :
             break
         elif(id == 1) :
-            break
+            search(students, id)
         else :
             search(students, id)
 
@@ -180,3 +231,8 @@ def run_remove(students):
         else :
             remove(students, id) # function call
 
+def run_save(students):
+    pass
+
+def run_print_list(students):
+    pass

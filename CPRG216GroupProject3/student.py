@@ -29,3 +29,6 @@ class Student :
         self.__gpa = gpa
     def set_id(self, semester):
         self.__semester = semester
+
+    def __str__(self):
+        return f"{self.__id} {self.__f_name} {self.__l_name} {self.__gpa} {self.__semester}\n"
