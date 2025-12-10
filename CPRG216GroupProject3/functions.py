@@ -1,5 +1,7 @@
 from student import *
-
+# When database is mentioned, it refers to the text file that the information
+# is being written to. I believe that in a real system that this information
+# would be stored inside a database. 
 def show_menu():
     '''
     Prints a menu of options for the user to select
@@ -46,15 +48,6 @@ def add(student):
         
         f_obj.write(student.__str__())
         f_obj.close()
-    # informs user of decision
-    print("Student Enrolled in the system")
-    # values = students[id]
-    
-    # prints all the values associated with the key. 
-    # This is done to bypass the brackets that come with 
-    # printing a dictionary
-    # for i in range(4):
-    #     print(values[i], end=" ")
 
 def remove(students, id):
     '''
@@ -70,28 +63,52 @@ def remove(students, id):
     else:
         print("Student not found.",end="")
 
-def edit_name(students, id, new_name):
+def edit_name(lp, i, fn, ln, g, s):
     '''
-    Takes in a list, a key, and the name change
+    Takes in a first name, a last name, gpa, and semester
     '''
+    new_student = Student(i, fn, ln, g, s)
+    list = []
 
-    # get the indiviudal values within the key 
-    # and stores them inside a temporary variable 
-    # and temporary list
-    values = students[id] 
-    gpa = values[2]
-    sem = values[3]
-    temp ={}
-    # Setting the temporary list
-    temp[id] = [id, new_name, gpa, sem]
-    # Removes old information and updates it 
-    students.pop(id)
-    students.update(temp)
-    # Informs the user that the change was madeS
-    print("Student name modified for the student with id", id)
-    print("Student's new name is", new_name)
+    f_obj = open("data.txt", "r")
+    line = f_obj.readline()
 
-def search(students, id):
+    # searches to see where the id is being used in the program
+    while line != "":
+        line = line.rstrip()
+        lparsed = line.split()
+        list.append(lparsed)
+        line = f_obj.readline()
+    f_obj.close()
+    location = list.index(lp)
+    list.remove(lp)
+    entry = [str(i),fn,ln,str(float(g)),s]
+    
+    # adds the student back to the temporary list
+    list.insert(location, entry)
+
+    f_obj = open("data.txt", "w")
+
+    
+    
+    
+    # prints all the values associated with the key. 
+    # This is done to bypass the brackets that come with 
+    # printing a dictionary
+    for x in range(4):
+        values = list[x]
+        for y in range(len(list)+1):
+            f_obj.write(values[y])
+            f_obj.write(" ")
+        f_obj.write("\n")
+    
+    f_obj.close()
+    new_entry = list[location]
+    print("Student's new info is")
+    for z in range(len(list[location])):
+        print(new_entry[z], end=" ")
+    
+def search(userInput):
     '''
     Takes in an object and an int. Searches the 'database' for a match
     '''
@@ -101,7 +118,7 @@ def search(students, id):
     line = f_obj.readline()
 
     # searches to see if id is being used in the program
-    if(id == 2):
+    if(userInput == 2):
         fn = input("Please Enter the first name of the student:\n")
         ln = input("Please Enter the last name of the student:\n")
 
@@ -127,67 +144,73 @@ def search(students, id):
             line = f_obj.readline()
     if(student_exists == True):
         print("Student found")
+        print(line)
     else:
         print("Student not found")
 
+def save(students):
+    pass
 
+def print_list(students):
+    pass
 
-
-
-
-
-
-    # # Checks to see if the entered key 
-    # # exists within the list
-    # if id in students:
-    #     print("Student found.")
-    #     values = students[id]
-
-    #     # This is only range 3 as the testing expected output 
-    #     # doesn't display the semester. Unclear if that is a mistake 
-    #     # or if that is intentional
-    #     for i in range(3): 
-    #         print(values[i], end=" ") # prints the indiviual values to bypass the brackets that come with prints a dictionary on its own
-    # # Error message for the user
-    # else:
-    #     print("Student not found.",end="")
-
-def run_search(students):
+def run_search():
     '''
     Takes Student object. Provides the user a chance to 
     change their mind if they selected the wrong option.
     '''
     option = True 
     while option:
-        id = int(input("\nTo search using the Id enter 1. To search using the first name and last name enter 2. Enter -1 to return to the previous menu\n"))
+        userInput = int(input("\nTo search using the Id enter 1. To search using the first name and last name enter 2. Enter -1 to return to the previous menu\n"))
         # break condition if the user entered the wrong option
-        if(id == -1) :
+        if(userInput == -1) :
             break
-        elif(id == 1) :
-            search(students, id)
+        elif(userInput == 1) :
+            search(userInput)
         else :
-            search(students, id)
+            search(userInput)
 
-def run_edit(students):
+def run_edit():
     '''
-    Takes in a list. Provides the user a chance to 
-    change their mind if they selected the wrong option.
+    Accesses 'database' to see if the id is in the system. Provides the user 
+    a chance to change their mind if they selected the wrong option.
     '''
     
     option = True
     while option:
-        id = int(input("\nEnter the id of the student. Enter -1 to return to the previous menu\n"))
+        id = input("\nEnter the id of the student. Enter -1 to return to the previous menu\n")
         # break condition if the user entered the wrong option
-        if(id == -1) :
+        if(int(id) == -1) :
             break
         else :
-            # checks to see if the entered key exists within the list. 
+            # checks to see if the entered id exists within the 'database'. 
             # If not, it will print an error message to the user.
-            if id in students:
-                n = input("Enter the new name of the student\n")
-                edit_name(students, id, n)
-            else:
-                print("Student not found.",end="")
+
+            student_exists = False
+            
+            f_obj = open("data.txt", "r")
+            line = f_obj.readline()
+
+            # searches to see if id is being used in the program
+            while line != "":
+                line = line.rstrip()
+                lparsed = line.split()
+
+                # if the id is being used in the 'database', it will break the loop and print a message to the user
+                if(lparsed[0] == id):
+                    student_exists = True
+                    break
+                line = f_obj.readline()
+
+        if(student_exists == True):
+            id = int(id)
+            fn = input("First name:\n")
+            ln = input("Last name:\n")
+            g = input("GPA:\n")
+            s = input("Semester:\n")
+            edit_name(lparsed, id, fn, ln, g, s)
+        else:
+            print("Student not found")
 
 def run_add(student):
     '''
@@ -205,6 +228,8 @@ def run_add(student):
         s = int(input("Semester:"))
         new_student = Student(i, fn, ln, g, s)
         add(new_student) # function call
+        # informs user of decision
+        print("Student Enrolled in the system")
 
         # asks user if they want to add another item to the list
         while(True) :

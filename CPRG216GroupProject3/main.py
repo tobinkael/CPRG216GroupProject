@@ -10,9 +10,9 @@ while running:
         case("1"):
             run_add(new_student)
         case("2"):
-            run_search(new_student)
+            run_search()
         case("3"):
-            run_edit(new_student)
+            run_edit()
         case("4"):
             run_remove(new_student)
         case("5"):
