@@ -40,6 +40,10 @@ def add(student):
             print("Incorrect Id. Id already exist in the system.")
             student_exists = True
             break
+        elif((lparsed[1] == nparsed[1]) and (lparsed[2] == nparsed[2])):
+            print("The student already enrolled. No action is required.")
+            student_exists = True
+            break
         line = f_obj.readline()
     f_obj.close()
     # if the id is free, write to the file
@@ -48,6 +52,8 @@ def add(student):
         
         f_obj.write(student.__str__())
         f_obj.close()
+        # informs user of decision
+        print("Student Enrolled in the system")
 
 def remove(students, id):
     '''
@@ -228,8 +234,7 @@ def run_add(student):
         s = int(input("Semester:"))
         new_student = Student(i, fn, ln, g, s)
         add(new_student) # function call
-        # informs user of decision
-        print("Student Enrolled in the system")
+        
 
         # asks user if they want to add another item to the list
         while(True) :
