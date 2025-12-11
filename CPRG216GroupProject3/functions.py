@@ -55,19 +55,43 @@ def add(student):
         # informs user of decision
         print("Student Enrolled in the system")
 
-def remove(students, id):
+def remove(id):
     '''
-    Takes in a list and an interger id. 
+    Takes in an object and an interger id. 
     Removes the key-value pair at the id (key)
     '''
+    student_exists = False
+    list = []
+    
+    f_obj = open("data.txt", "r")
+    line = f_obj.readline()
 
-    # checks to see if the entered id was an id that is within the dictionary
-    if id in students: 
-        students.pop(id)
-        print("Student removed.")
-    # if the id entered is not a key, print error message to user
+    # searches to see if id is being used in the program
+    while line != "":
+        line = line.rstrip()
+        lparsed = line.split()
+        list.append(lparsed)
+
+        # if the id is being used in the 'database', it will break the loop and print a message to the user
+        if(lparsed[0] == str(id)):
+            lp = lparsed
+            list.remove(lp)
+            student_exists = True
+        line = f_obj.readline()
+
+    f_obj.close()
+    if(student_exists == True):
+        f_obj = open("data.txt", "w")
+            
+        for x in range(len(list)):
+            values = list[x]
+            for y in range(5):
+                f_obj.write(values[y])
+                f_obj.write(" ")
+            f_obj.write("\n")
+        print("Student removed")
     else:
-        print("Student not found.",end="")
+        print("Student not found")
 
 def edit_name(lp, i, fn, ln, g, s):
     '''
@@ -94,16 +118,9 @@ def edit_name(lp, i, fn, ln, g, s):
     list.insert(location, entry)
 
     f_obj = open("data.txt", "w")
-
-    
-    
-    
-    # prints all the values associated with the key. 
-    # This is done to bypass the brackets that come with 
-    # printing a dictionary
-    for x in range(4):
+    for x in range(len(list)):
         values = list[x]
-        for y in range(len(list)+1):
+        for y in range(5):
             f_obj.write(values[y])
             f_obj.write(" ")
         f_obj.write("\n")
@@ -153,12 +170,6 @@ def search(userInput):
         print(line)
     else:
         print("Student not found")
-
-def save(students):
-    pass
-
-def print_list(students):
-    pass
 
 def run_search():
     '''
@@ -218,7 +229,7 @@ def run_edit():
         else:
             print("Student not found")
 
-def run_add(student):
+def run_add():
     '''
     Takes in an object. Asks the user for different variables 
     and then passes it on to another function
@@ -248,9 +259,9 @@ def run_add(student):
             else :
                 print("That is not a valid input. Please input a proper input.")
 
-def run_remove(students):
+def run_remove():
     '''
-    Takes in a list. Provides the user a chance to 
+    Takes in an object. Provides the user a chance to 
     change their mind if they selected the wrong option
     '''
     option = True
@@ -259,10 +270,40 @@ def run_remove(students):
         if(id == -1) :
             break
         else :
-            remove(students, id) # function call
+            remove(id) # function call
+            while(True) :
+                userCont = input("Do you want to remove more students?y(yes)/n(no)n\n")
+                if userCont.startswith('y') :
+                    break
+                elif userCont.startswith('n') :
+                    option = False
+                    break
+                # error handling
+                else :
+                    print("That is not a valid input. Please input a proper input.")           
 
-def run_save(students):
-    pass
+def run_save():
+    print("Data saved to local file successfully.")
 
-def run_print_list(students):
-    pass
+def run_print_list():
+    print("\n")
+    list = []
+    
+    f_obj = open("data.txt", "r")
+    line = f_obj.readline()
+
+    # searches to see if id is being used in the program
+    while line != "":
+        line = line.rstrip()
+        lparsed = line.split()
+        list.append(lparsed)
+        line = f_obj.readline()
+
+    f_obj.close()
+
+
+    for x in range(4):
+        values = list[x]
+        for y in range(len(list)+1):
+            print(values[y], end=" ")
+        print("\n")

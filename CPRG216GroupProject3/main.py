@@ -8,17 +8,17 @@ running = True
 while running:
     match show_menu():
         case("1"):
-            run_add(new_student)
+            run_add()
         case("2"):
             run_search()
         case("3"):
             run_edit()
         case("4"):
-            run_remove(new_student)
+            run_remove()
         case("5"):
-            run_print_list(new_student)
+            run_print_list()
         case("6"):
-            run_save(new_student)
+            run_save()
         case(_):
             print("That is not a valid input. Please input a proper input.")
     # asks if user wants to continue using the program

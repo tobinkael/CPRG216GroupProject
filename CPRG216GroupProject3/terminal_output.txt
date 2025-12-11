@@ -1,0 +1,223 @@
+Welcome to the students record program
+What would you like to do today?
+-Add a student? enter 1
+-Search for student 2
+-Edit student info? enter 3
+-Remove a student? enter 4
+-Print the student list? enter 5
+-Save the data to a file? enter 6
+1
+Enter id of the student, followed by the student's information.
+Id:1
+First name:John
+Last name:Doe
+GPA:3.2
+Semester:1
+Student Enrolled in the system
+
+Do you want to add more students? y(yes)/n(no)
+y
+Enter id of the student, followed by the student's information.
+Id:2
+First name:Emy
+Last name:Miller
+GPA:4
+Semester:1
+Student Enrolled in the system
+
+Do you want to add more students? y(yes)/n(no)
+y
+Enter id of the student, followed by the student's information.
+Id:2
+First name:Sara
+Last name:Gray
+GPA:2.8
+Semester:3
+Incorrect Id. Id already exist in the system.
+
+Do you want to add more students? y(yes)/n(no)
+y
+Enter id of the student, followed by the student's information.
+Id:3
+First name:Sara
+Last name:Gray
+GPA:2.8
+Semester:3
+Student Enrolled in the system
+
+Do you want to add more students? y(yes)/n(no)
+n
+Would you like to continue(y/yes), or exit the program(n/no)?
+y
+What would you like to do today?
+-Add a student? enter 1
+-Search for student 2
+-Edit student info? enter 3
+-Remove a student? enter 4
+-Print the student list? enter 5
+-Save the data to a file? enter 6
+2
+
+To search using the Id enter 1. To search using the first name and last name enter 2. Enter -1 to return to the previous menu
+1
+Please Enter the id of the student:
+2
+Student found
+2 Emy Miller 4.0 1
+
+To search using the Id enter 1. To search using the first name and last name enter 2. Enter -1 to return to the previous menu
+2
+Please Enter the first name of the student:
+Sarah
+Please Enter the last name of the student:
+Gray
+Student not found
+
+To search using the Id enter 1. To search using the first name and last name enter 2. Enter -1 to return to the previous menu
+2
+Please Enter the first name of the student:
+Sara
+Please Enter the last name of the student:
+Gray
+Student found
+3 Sara Gray 2.8 3
+
+To search using the Id enter 1. To search using the first name and last name enter 2. Enter -1 to return to the previous menu
+-1
+Would you like to continue(y/yes), or exit the program(n/no)?
+y
+What would you like to do today?
+-Add a student? enter 1
+-Search for student 2
+-Edit student info? enter 3
+-Remove a student? enter 4
+-Print the student list? enter 5
+-Save the data to a file? enter 6
+3
+
+Enter the id of the student. Enter -1 to return to the previous menu
+2
+First name:
+Emmy
+Last name:
+Miller
+GPA:
+3.2
+Semester:
+1
+Student's new info is
+2 Emmy Miller 3.2 1
+Enter the id of the student. Enter -1 to return to the previous menu
+-1
+Would you like to continue(y/yes), or exit the program(n/no)?
+y
+What would you like to do today?
+-Add a student? enter 1
+-Search for student 2
+-Edit student info? enter 3
+-Remove a student? enter 4
+-Print the student list? enter 5
+-Save the data to a file? enter 6
+1
+Enter id of the student, followed by the student's information.
+Id:4
+First name:Emmy
+Last name:Miller
+GPA:3.2
+Semester:2
+The student already enrolled. No action is required.
+
+Do you want to add more students? y(yes)/n(no)
+y
+Enter id of the student, followed by the student's information.
+Id:4
+First name:Emmy
+Last name:Wang
+GPA:3.2
+Semester:2
+Student Enrolled in the system
+
+Do you want to add more students? y(yes)/n(no)
+y
+Enter id of the student, followed by the student's information.
+Id:5
+First name:Sean
+Last name:Johnson
+GPA:3.2
+Semester:4
+Student Enrolled in the system
+
+Do you want to add more students? y(yes)/n(no)
+n
+Would you like to continue(y/yes), or exit the program(n/no)?
+y
+What would you like to do today?
+-Add a student? enter 1
+-Search for student 2
+-Edit student info? enter 3
+-Remove a student? enter 4
+-Print the student list? enter 5
+-Save the data to a file? enter 6
+4
+
+Enter id of the student that you want to remove from the students' registry. Enter -1 to return to the previous menu
+2
+Student removed
+Do you want to remove more students?y(yes)/n(no)n
+n
+Would you like to continue(y/yes), or exit the program(n/no)?
+y
+What would you like to do today?
+-Add a student? enter 1
+-Search for student 2
+-Edit student info? enter 3
+-Remove a student? enter 4
+-Print the student list? enter 5
+-Save the data to a file? enter 6
+5
+
+
+1 John Doe 3.2 1
+
+3 Sara Gray 2.8 3
+
+4 Emmy Wang 3.2 2
+
+5 Sean Johnson 3.2 4
+
+Would you like to continue(y/yes), or exit the program(n/no)?
+y
+What would you like to do today?
+-Add a student? enter 1
+-Search for student 2
+-Edit student info? enter 3
+-Remove a student? enter 4
+-Print the student list? enter 5
+-Save the data to a file? enter 6
+6
+Data saved to local file successfully.
+Would you like to continue(y/yes), or exit the program(n/no)?
+n
+
+C:\Users\deric\Documents\SAIT\FALL25\OOP1CPRG216-Assignments\CPRG216GroupProject3>C:/Users/deric/AppData/Local/Programs/Python/Python313/python.exe c:/Users/deric/Documents/SAIT/FALL25/OOP1CPRG216-Assignments/CPRG216GroupProject3/main.py
+Welcome to the students record program
+What would you like to do today?
+-Add a student? enter 1
+-Search for student 2
+-Edit student info? enter 3
+-Remove a student? enter 4
+-Print the student list? enter 5
+-Save the data to a file? enter 6
+5
+
+
+1 John Doe 3.2 1
+
+3 Sara Gray 2.8 3
+
+4 Emmy Wang 3.2 2
+
+5 Sean Johnson 3.2 4
+
+Would you like to continue(y/yes), or exit the program(n/no)?
+n
