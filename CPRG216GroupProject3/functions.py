@@ -40,6 +40,7 @@ def add(student):
             print("Incorrect Id. Id already exist in the system.")
             student_exists = True
             break
+        # if the name is being used in the 'database', it will break the loop and print an error message
         elif((lparsed[1] == nparsed[1]) and (lparsed[2] == nparsed[2])):
             print("The student already enrolled. No action is required.")
             student_exists = True
@@ -66,7 +67,8 @@ def remove(id):
     f_obj = open("data.txt", "r")
     line = f_obj.readline()
 
-    # searches to see if id is being used in the program
+    # searches to see where the id is being used in the program and 
+    # adds the text files contents to a temporary list
     while line != "":
         line = line.rstrip()
         lparsed = line.split()
@@ -80,6 +82,8 @@ def remove(id):
         line = f_obj.readline()
 
     f_obj.close()
+
+    # if the id is found in the text file, rewrite the text file with the student removed
     if(student_exists == True):
         f_obj = open("data.txt", "w")
             
@@ -90,6 +94,7 @@ def remove(id):
                 f_obj.write(" ")
             f_obj.write("\n")
         print("Student removed")
+    # prints error message to user
     else:
         print("Student not found")
 
@@ -97,26 +102,29 @@ def edit_name(lp, i, fn, ln, g, s):
     '''
     Takes in a first name, a last name, gpa, and semester
     '''
-    new_student = Student(i, fn, ln, g, s)
     list = []
 
     f_obj = open("data.txt", "r")
     line = f_obj.readline()
 
-    # searches to see where the id is being used in the program
+    # searches to see where the id is being used in the program and adds the text
+    # files contents to a temporary list
     while line != "":
         line = line.rstrip()
         lparsed = line.split()
         list.append(lparsed)
         line = f_obj.readline()
     f_obj.close()
+    # gets position of where the id is in the list
     location = list.index(lp)
     list.remove(lp)
+    # students edited information
     entry = [str(i),fn,ln,str(float(g)),s]
     
     # adds the student back to the temporary list
     list.insert(location, entry)
 
+    # rewrites the file with the students updated information
     f_obj = open("data.txt", "w")
     for x in range(len(list)):
         values = list[x]
@@ -126,6 +134,9 @@ def edit_name(lp, i, fn, ln, g, s):
         f_obj.write("\n")
     
     f_obj.close()
+    
+    # gets the location of the updated students information is at and 
+    # prints it to the user.
     new_entry = list[location]
     print("Student's new info is")
     for z in range(len(list[location])):
@@ -140,7 +151,7 @@ def search(userInput):
     f_obj = open("data.txt", "r")
     line = f_obj.readline()
 
-    # searches to see if id is being used in the program
+    # searches to see if name is being used in the program
     if(userInput == 2):
         fn = input("Please Enter the first name of the student:\n")
         ln = input("Please Enter the last name of the student:\n")
@@ -154,6 +165,7 @@ def search(userInput):
                 student_exists = True
                 break
             line = f_obj.readline()
+     # searches to see if id is being used in the program
     else:
         i = input("Please Enter the id of the student:\n")
         while line != "":
@@ -182,8 +194,6 @@ def run_search():
         # break condition if the user entered the wrong option
         if(userInput == -1) :
             break
-        elif(userInput == 1) :
-            search(userInput)
         else :
             search(userInput)
 
@@ -247,7 +257,7 @@ def run_add():
         add(new_student) # function call
         
 
-        # asks user if they want to add another item to the list
+        # asks user if they want to add another item to the studenet list
         while(True) :
             userCont = input("\nDo you want to add more students? y(yes)/n(no)\n")
             if userCont.startswith('y') :
@@ -283,16 +293,22 @@ def run_remove():
                     print("That is not a valid input. Please input a proper input.")           
 
 def run_save():
+    '''
+    Prints message to user
+    '''
     print("Data saved to local file successfully.")
 
 def run_print_list():
+    '''
+    Prints the list of students in the saved file
+    '''
     print("\n")
     list = []
     
     f_obj = open("data.txt", "r")
     line = f_obj.readline()
 
-    # searches to see if id is being used in the program
+    # reads each line of the text file and saves each line to a new index in a list
     while line != "":
         line = line.rstrip()
         lparsed = line.split()
@@ -301,7 +317,7 @@ def run_print_list():
 
     f_obj.close()
 
-
+    # prints out the lists indexes and individual elements
     for x in range(4):
         values = list[x]
         for y in range(len(list)+1):
