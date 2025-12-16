@@ -34,56 +34,145 @@ def show_menu():
     return option
 
 def add(list):
-    car_exists = False
-    print("Enter id of the car, followed by the car's information.")
+    running = True
+    while running:
+        car_exists = False
+        print("Enter id of the car, followed by the car's information.")
 
-    id = input("id:")
-    n = input("name:")
-    m = input("make:")
-    b = input("body:")
-    y = input("year:")
-    v = input("value:")
+        id = int(input("id:"))
+        n = input("name:")
+        m = input("make:")
+        b = input("body:")
+        y = input("year:")
+        v = input("value:")
 
-    # if the id is being used in the list, it will break the loop and print an error message
-    for x in range(len(list)):
-        value = list[x]
-        search_id = str(id)
-        if(search_id == value[0]):
-            print("Incorrect Id. Id already exist in the system.")
-            car_exists = True
-            break
-    # if the id is free, save to the list
-    if car_exists == False:
-        new_car = Car(id, n, m, b, y, v)
-        car_to_add = new_car.__str__()
-        temp_list = car_to_add.split()
-
-        list.append(temp_list)
-        # informs user of decision
-        print("car is added to the inventory")
-        
+        # if the id is being used in the list, it will break the loop and print an error message
         for x in range(len(list)):
             value = list[x]
             search_id = str(id)
             if(search_id == value[0]):
-                for z in range(len(value)):
-                    print(value[z], end=" ")
+                print("Incorrect Id. Id already exist in the system.")
+                car_exists = True
+                break
+        # if the id is free, save to the list
+        if car_exists == False:
+            new_car = Car(id, n, m, b, y, v)
+            car_to_add = new_car.__str__()
+            temp_list = car_to_add.split()
+
+            list.append(temp_list)
+            # informs user of decision
+            print("car is added to the inventory")
+            
+            for x in range(len(list)):
+                value = list[x]
+                search_id = str(id)
+                if(search_id == value[0]):
+                    for z in range(len(value)):
+                        print(value[z], end=" ")
+                    car_exists = True
+                    break
+        # asks user if they want to add another item to the studenet list
+        while(True) :
+            userCont = input("\nDo you want to add more cars? y(yes)/n(no)\n")
+            if userCont.startswith('y'):
+                break
+            elif userCont.startswith('n'):
+                running = False
+                break
+            # error handling
+            else :
+                print("That is not a valid input. Please input a proper input.")
+    
+def search(list):
+    while True:
+        user_input = input("To search using the Id enter 1. To search using the name of the car enter 2. Enter -1 to return to the previous menu")
+        match user_input:
+            case("-1"):
+                break
+            case("1"):
+                id = int(input("Please Enter the id of the car:"))
+                for x in range(len(list)):
+                    value = list[x]
+                    search_id = str(id)
+                    car_exists = False
+                    if(search_id == value[0]):
+                        print("found")
+                        for z in range(len(value)):
+                            print(value[z], end=" ")
+                        print("\n")
+                        car_exists = True
+                        break
+                if(car_exists == False):
+                    print("not found")
+            case("2"):
+                n = input("Please Enter the name of the car:")
+                for x in range(len(list)):
+                    value = list[x]
+                    search_n = str(n)
+                    car_exists = False
+                    if(search_n == value[1]):
+                        print("found")
+                        for z in range(len(value)):
+                            print(value[z], end=" ")
+                        print("\n")
+                        car_exists = True
+                        break
+                if(car_exists == False):
+                    print("not found")
+            case(_):
+                print("That is not a valid input. Please input a proper input.")
+
+def edit(list):
+    while True:
+        car_exists = False
+        id = int(input("\nEnter the id of the car. Enter -1 to return to the previous menu\n"))
+        if(id == -1):
+            break
+        search_id = str(id)
+        for x in range(len(list)):
+            value = list[x]
+            if(search_id == value[0]):
                 car_exists = True
                 break
 
-def search(list):
-    pass
-def edit(list):
-    pass
+        if(car_exists == True):
+            n = input("name:")
+            m = input("make:")
+            b = input("body:")
+            y = input("year:")
+            v = input("value:")
+
+            # if the id is being used in the list, it will break the loop and print an error message
+            for x in range(len(list)):
+                value = list[x]
+                search_id = str(id)
+                if(search_id == value[0]):
+                    new_car = Car(id, n, m, b, y, v)
+                    car_to_add = new_car.__str__()
+                    temp_list = car_to_add.split()
+
+                    del list[id-1]  
+                    list.insert((id-1),temp_list)
+                    print("Car's new info is:")
+
+                    value = list[id-1]
+                    search_id = str(id)
+                    for z in range(len(value)):
+                        print(value[z], end=" ")
+                    break
+        else:
+            print("not found")
 def remove(list):
     pass
 def print_list(list):
     '''
     prints out the lists indexes and individual elements
     '''
-    for x in range(5):
+    print("\n\n")
+    for x in range(len(list)):
         values = list[x]
-        for y in range(len(list)+1):
+        for y in range(len(values)):
             print(values[y], end=" ")
         print("\n")
 
