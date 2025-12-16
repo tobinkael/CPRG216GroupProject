@@ -44,7 +44,7 @@ def add(list):
         m = input("make:")
         b = input("body:")
         y = input("year:")
-        v = input("value:")
+        v = float(input("value:"))
 
         # if the id is being used in the list, it will break the loop and print an error message
         for x in range(len(list)):
@@ -141,7 +141,7 @@ def edit(list):
             m = input("make:")
             b = input("body:")
             y = input("year:")
-            v = input("value:")
+            v = float(input("value:"))
 
             # if the id is being used in the list, it will break the loop and print an error message
             for x in range(len(list)):
@@ -163,8 +163,38 @@ def edit(list):
                     break
         else:
             print("not found")
+
 def remove(list):
-    pass
+    running = True
+    while running:
+        car_exists = False
+        id = int(input("\nEnter id of the car that you want to remove from the inventory.\n"))
+
+        search_id = str(id)
+        for x in range(len(list)):
+            value = list[x]
+            if(search_id == value[0]):
+                car_exists = True
+                break
+
+        if(car_exists == True):
+            del list[id-1]  
+            print("Car removed:")
+        else:
+            print("not found")
+
+        # asks user if they want to add another item to the studenet list
+        while(True) :
+            userCont = input("\nDo you want to remove more cars? y(yes)/n(no)\n")
+            if userCont.startswith('y'):
+                break
+            elif userCont.startswith('n'):
+                running = False
+                break
+            # error handling
+            else :
+                print("That is not a valid input. Please input a proper input.")
+
 def print_list(list):
     '''
     prints out the lists indexes and individual elements
